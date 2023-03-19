@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WhatsApp Link Generator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+
+		.form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #f2f2f2;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			width: 300px;
+		}
+
+		h1 {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+
+		input[type="tel"] {
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			margin-bottom: 20px;
+			width: 100%;
+			font-size: 16px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
+
+		.result {
+			display: none;
+			margin-top: 20px;
+			font-size: 16px;
+			text-align: center;
+			color: #333;
+		}
+
+		.result a {
+			color: #008000;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="form">
+			<h1>WhatsApp Link Generator</h1>
+			<input type="tel" placeholder="Enter phone number" id="phone-number">
+			<button onclick="generateLink()">Generate Link</button>
+			<p class="result" id="result"></p>
+		</div>
+	</div>
+
+	<script>
+		function generateLink() {
+			var phoneNumber = document.getElementById("phone-number").value;
+			if (phoneNumber) {
+				var cleanedNumber = phoneNumber.replace(/\D/g, ''); // Remove non-numeric characters
+				var link = "https://api.whatsapp.com/send?phone=" + cleanedNumber;
+				document.getElementById("result").innerHTML = "<a href='" + link + "'>" + link + "</a>";
+				document.getElementById("result").style.display = "block";
+			}
+		}
+	</script>
+</body>
+</html>
